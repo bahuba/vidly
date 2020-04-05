@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "acorn": "^6.4.0",
+    "acorn": "^6.4.1",
     "ajv": "^6.10.2",
     "bootstrap": "^4.1.1",
     "create-react-app": "^1.5.2",
