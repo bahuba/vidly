@@ -3,25 +3,44 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "acorn": "^6.4.0",
-    "ajv": "^6.10.2",
+    "@sentry/react": "^6.0.2",
+    "@sentry/tracing": "^6.0.2",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^7.2.1",
+    "axios": "^0.18.1",
     "bootstrap": "^4.1.1",
-    "create-react-app": "^1.5.2",
-    "eslint": "^4.19.1",
     "font-awesome": "^4.7.0",
-    "jquery": "^1.9.1",
-    "lodash": "^4.17.0",
-    "popper.js": "^1.16.0",
+    "joi-browser": "^13.4.0",
+    "jshint": "^2.12.0",
+    "lodash": "^4.17.10",
     "prop-types": "^15.6.2",
-    "react": "^16.4.1",
-    "react-dom": "^16.4.1",
+    "query-string": "^6.1.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "^1.1.4"
+    "react-scripts": "3.4.3",
+    "react-toastify": "^4.1.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-scripts start --no-cache",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "react-scripts test --no-cache",
     "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

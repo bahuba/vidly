@@ -1,15 +1,15 @@
 import React from "react";
 
-const Like = props => {
-  let classes = "fa fa-heart";
-  if (!props.liked) classes += "-o";
+const Like = (props) => {
+  let className = "fa fa-heart";
+  if (!props.liked) className += "-o";
   return (
     <i
-      onClick={props.onClick}
+      onClick={() => props.onClick(props.item)}
+      className={className}
       style={{ cursor: "pointer" }}
-      className={classes}
       aria-hidden="true"
-    />
+    ></i>
   );
 };
 

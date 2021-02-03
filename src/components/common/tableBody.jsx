@@ -1,29 +1,26 @@
 import React, { Component } from "react";
-import _ from "lodash";
+import Cell from "./cell";
 
 class TableBody extends Component {
-  renderCell = (item, column) => {
-    if (column.content) return column.content(item);
-
-    return _.get(item, column.path);
-  };
-
-  createKey = (item, column) => {
-    return item._id + (column.path || column.key);
+  renderCell = (row, column) => {
+    // check if column requires custom rendering
+    if (column.code) return column.code(row);
+    // basic rendering case:
+    return (
+      <td key={row._id + (column.path || column.key)}>
+        <Cell row={row} column={column} />
+      </td>
+    );
   };
 
   render() {
-    const { data, columns } = this.props;
+    const { rows, columns } = this.props;
 
     return (
       <tbody>
-        {data.map(item => (
-          <tr key={item._id}>
-            {columns.map(column => (
-              <td key={this.createKey(item, column)}>
-                {this.renderCell(item, column)}
-              </td>
-            ))}
+        {rows.map((row) => (
+          <tr key={row._id}>
+            {columns.map((column) => this.renderCell(row, column))}
           </tr>
         ))}
       </tbody>

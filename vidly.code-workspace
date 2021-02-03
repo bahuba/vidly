@@ -1,10 +1,14 @@
 {
-	"folders": [
-		{
-			"path": "."
-		}
-	],
-	"settings": {
-		"git.ignoreLimitWarning": true
-	}
+  "folders": [
+    {
+      "path": "."
+    },
+    {
+      "path": "../http-app"
+    },
+    {
+      "path": "../vidly-api-node"
+    }
+  ],
+  "settings": {}
 }
