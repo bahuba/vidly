@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { toast } from "react-toastify";
 import { getMovies, deleteMovie } from "../services/movieService";
 import { getGenres } from "../services/genreService";
 import Pagination from "./common/pagination";
@@ -33,10 +34,20 @@ class Movies extends Component {
 
   handleDelete = async (movieId) => {
     console.log("handleDelete called", movieId);
-    deleteMovie(movieId);
-
-    const { data: movies } = await getMovies();
+    const originalMovies = this.state.movies;
+    const movies = originalMovies.filter((m) => m._id !== movieId);
+    console.log(movies);
     this.setState({ movies });
+
+    try {
+      await deleteMovie(movieId);
+    } catch (ex) {
+      console.log("Exception while deleting movieId: ", movieId);
+      if (ex.response && ex.response.status === 404) {
+        toast.error("Delete failed on movie with Id: ", movieId);
+      }
+      this.setState({ originalMovies });
+    }
   };
 
   handleLike = (movie) => {
