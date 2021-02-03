@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { getMovies, deleteMovie } from "../services/fakeMovieService";
+import { getMovies, deleteMovie } from "../services/movieService";
 import { getGenres } from "../services/genreService";
 import Pagination from "./common/pagination";
 import ListGroup from "./common/listGroup";
@@ -22,17 +22,21 @@ class Movies extends Component {
     const { data } = await getGenres();
     const genres = [{ _id: -1, name: "All Genres" }, ...data];
 
+    const { data: movies } = await getMovies();
+
     this.setState({
-      movies: getMovies(),
+      movies: movies,
       genres: genres,
       selectedGenre: genres[0],
     });
   }
 
-  handleDelete = (movieId) => {
+  handleDelete = async (movieId) => {
     console.log("handleDelete called", movieId);
     deleteMovie(movieId);
-    this.setState({ movies: getMovies() });
+
+    const { data: movies } = await getMovies();
+    this.setState({ movies });
   };
 
   handleLike = (movie) => {

@@ -4,9 +4,6 @@
       "path": "."
     },
     {
-      "path": "../http-app"
-    },
-    {
       "path": "../vidly-api-node"
     }
   ],

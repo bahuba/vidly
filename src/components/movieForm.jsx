@@ -2,7 +2,7 @@
 import React from "react";
 import Joi from "joi-browser";
 import Form from "./common/form";
-import { getMovie, saveMovie } from "../services/fakeMovieService";
+import { getMovie, saveMovie } from "../services/movieService";
 import { getGenres } from "../services/genreService";
 
 class MovieForm extends Form {
@@ -43,7 +43,7 @@ class MovieForm extends Form {
     // load movie from DB
     if (this.props.match.params.id === "new") return;
 
-    const movie = getMovie(this.props.match.params.id);
+    const { data: movie } = await getMovie(this.props.match.params.id);
     if (!movie) this.props.history.replace("/not-found");
 
     const data = { ...this.state.data };
