@@ -40,6 +40,8 @@ class MovieForm extends Form {
       this.state.genreNames[i] = genres[i].name;
     }
 
+    console.log("Genres: ", genres);
+
     // load movie from DB
     if (this.props.match.params.id === "new") return;
 
@@ -55,14 +57,14 @@ class MovieForm extends Form {
     data.dailyRentalRate = movie.dailyRentalRate;
 
     this.setState({ data });
-    console.log("Loading movie: ", movie);
+    console.log("Loading movie: ", data);
   }
 
   doSubmit = async () => {
     // console.log(data);
     // set genre Id
     const { data: genres } = await getGenres();
-    const genre = genres().find((g) => (g._name = this.state.data.genreName));
+    const genre = genres.find((g) => g.name === this.state.data.genreName);
     this.state.data.genreId = genre._id;
     saveMovie(this.state.data);
     this.props.history.push("/movies");

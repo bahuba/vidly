@@ -10,17 +10,25 @@ export function getMovie(id) {
 }
 
 export function saveMovie(movie) {
-  // todo
-  // let movieInDb = movies.find((m) => m._id === movie._id) || {};
-  // movieInDb.title = movie.title;
-  // movieInDb.genre = genresAPI.genres.find((g) => g._id === movie.genreId);
-  // movieInDb.numberInStock = movie.numberInStock;
-  // movieInDb.dailyRentalRate = movie.dailyRentalRate;
-  // if (!movieInDb._id) {
-  //   movieInDb._id = Date.now().toString();
-  //   movies.push(movieInDb);
-  // }
-  // return movieInDb;
+  let payload = {
+    title: "",
+    genreId: "",
+    numberInStock: 0,
+    dailyRentalRate: 0,
+  };
+
+  payload.title = movie.title;
+  payload.genreId = movie.genreId;
+  payload.numberInStock = movie.numberInStock;
+  payload.dailyRentalRate = movie.dailyRentalRate;
+
+  console.log("saveMovie: ", movie._id, payload);
+  let resp;
+  if (movie._id === null)
+    resp = http.post(config.apiEndpoint + "/movies", payload);
+  else resp = http.put(config.apiEndpoint + "/movies/" + movie._id, payload);
+
+  return resp;
 }
 
 export function deleteMovie(id) {
