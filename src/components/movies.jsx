@@ -146,9 +146,11 @@ class Movies extends Component {
             />
           </div>
           <div className="col">
-            <button onClick={this.handleNewMovie} className="btn btn-primary">
-              New Movie
-            </button>
+            {this.props.user && (
+              <button onClick={this.handleNewMovie} className="btn btn-primary">
+                New Movie
+              </button>
+            )}
             <h5 style={{ padding: "10px 0px 10px 0px" }}>
               Showing {count} movies in the database.
             </h5>
@@ -164,6 +166,7 @@ class Movies extends Component {
               onDelete={this.handleDelete}
               onSort={this.handleSort}
               sortColumn={this.state.sortColumn}
+              user={this.props.user}
             />
             <Pagination
               onPageChanged={this.handlePageChange}
